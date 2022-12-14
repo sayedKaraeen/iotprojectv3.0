@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String SERVER_URI = "tcp://test.mosquitto.org:1883";
     private static final String TAG = "MainActivity";
 
+    ArrayList<Integer> collectionofNumbers = new ArrayList<>(500);
 
 
     @Override
@@ -37,10 +38,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        txv_rgb = (TextView) findViewById(R.id.txv_rgbValue);
-        txv_light = (TextView) findViewById(R.id.txv_lightValue);
-        txv_proximity = (TextView) findViewById(R.id.txv_proximityValue);
-        btn_color = (Button) findViewById(R.id.btnColor);
+        txv_rgb = findViewById(R.id.txv_rgbValue);
+        txv_light = findViewById(R.id.txv_lightValue);
+        txv_proximity = findViewById(R.id.txv_proximityValue);
+        btn_color = findViewById(R.id.btnColor);
 
 
         btn_color.setOnClickListener(new View.OnClickListener(){
@@ -79,20 +80,21 @@ public class MainActivity extends AppCompatActivity {
                 String count;
                 count = newMessage;
                 int myNum = Integer.parseInt(count);
-                ArrayList<Integer> collectionofNumbers = new ArrayList<>(500);
-
-                if(myNum < 2500 && myNum > 2400){
-                    for(int num : collectionofNumbers){
-                        collectionofNumbers.add(myNum);
 
 
-                    }
+                while(myNum < 2700 && myNum > 2500){
+
+                    collectionofNumbers.add(myNum);
+
                     System.out.println(collectionofNumbers);
 
+                    txv_proximity.setText(newMessage + ", " + "Attendees inside = "+collectionofNumbers.size());
+
+                    break;
+                }
 
 
-                    txv_proximity.setText(newMessage + " " + "inside = " + collectionofNumbers.size());
-                   }
+                //collectionofNumbers.clear();
 
             }
             @Override

@@ -19,6 +19,7 @@ import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class MainActivity extends AppCompatActivity {
     private TextView txv_rgb;
@@ -29,7 +30,8 @@ public class MainActivity extends AppCompatActivity {
     private static final String SERVER_URI = "tcp://test.mosquitto.org:1883";
     private static final String TAG = "MainActivity";
 
-    ArrayList<Integer> collectionofNumbers = new ArrayList<>(500);
+    ArrayList<Integer> collectionofNumbers = new ArrayList<>(10);
+
 
 
     @Override
@@ -56,19 +58,27 @@ public class MainActivity extends AppCompatActivity {
         client.setCallback(new MqttCallbackExtended() {
             @Override
             public void connectComplete(boolean reconnect, String serverURI) {
+                subscribe("otter");
+                //subscribe("otter2");
+
                 if (reconnect) {
                     System.out.println("Reconnected to : " + serverURI);
                     // Re-subscribe as we lost it due to new session
                     subscribe("otter");
+                //    subscribe("otter2");
+
                 } else {
                     System.out.println("Connected to: " + serverURI);
                     subscribe("otter");
+                //    subscribe("otter2");
+
                 }
             }
             @Override
             public void connectionLost(Throwable cause) {
                 System.out.println("The Connection was lost.");
             }
+
             @Override
             public void messageArrived(String topic, MqttMessage message) throws
                     Exception {
@@ -81,6 +91,18 @@ public class MainActivity extends AppCompatActivity {
                 count = newMessage;
                 int myNum = Integer.parseInt(count);
 
+                    /* Do something */
+
+                    /* Do something */
+
+                while(myNum > 3000 && myNum < 3500 ){
+
+                    collectionofNumbers.remove(1);
+                    txv_proximity.setText("Attendees inside = " + collectionofNumbers.size());
+                    System.out.println(collectionofNumbers);
+                    System.out.println("Incoming message: " + newMessage + "second otter is here");
+                    break;
+                }
 
                 while(myNum < 2700 && myNum > 2500){
 
@@ -88,15 +110,17 @@ public class MainActivity extends AppCompatActivity {
 
                     System.out.println(collectionofNumbers);
 
-                    txv_proximity.setText(newMessage + ", " + "Attendees inside = "+collectionofNumbers.size());
-
+                    txv_proximity.setText("Attendees inside = " + collectionofNumbers.size());
+                    System.out.println("Incoming message: " + newMessage + "             first otter is here");
                     break;
                 }
+            }
 
 
                 //collectionofNumbers.clear();
 
-            }
+
+
             @Override
             public void deliveryComplete(IMqttDeliveryToken token) {
             }
@@ -141,6 +165,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void subscribe(String otter) {
         final String topic = otter;
+
+
         int qos = 1;
         try {
             IMqttToken subToken = client.subscribe(topic, qos);
@@ -161,4 +187,7 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
+
+
+
 }

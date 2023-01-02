@@ -22,8 +22,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 public class MainActivity extends AppCompatActivity {
-    private TextView txv_rgb;
-    private TextView txv_light;
+    //private TextView txv_rgb;
+    //private TextView txv_light;
     private TextView txv_proximity;
     private Button btn_color;
     private MqttAndroidClient client;
@@ -40,8 +40,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        txv_rgb = findViewById(R.id.txv_rgbValue);
-        txv_light = findViewById(R.id.txv_lightValue);
+        //txv_rgb = findViewById(R.id.txv_rgbValue);
+        //txv_light = findViewById(R.id.txv_lightValue);
         txv_proximity = findViewById(R.id.txv_proximityValue);
         btn_color = findViewById(R.id.btnColor);
 

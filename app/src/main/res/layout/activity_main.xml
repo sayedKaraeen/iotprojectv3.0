@@ -13,14 +13,7 @@
             android:textSize="30sp"
             android:typeface="monospace" />
         <LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="wrap_content" android:padding="30dip" android:background="#FFFFFF" android:layout_centerInParent="true" android:layout_centerHorizontal="true">
-            <LinearLayout android:orientation="horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:padding="5dip">
-                <TextView android:id="@+id/txv_sensorTxt" android:layout_width="117dp" android:layout_height="wrap_content" android:layout_marginLeft="10dp" android:layout_marginBottom="15dp" android:padding="5dip" android:text="RGB:" android:textColor="@color/black_alpha" android:textSize="18sp" android:typeface="monospace"/>
-                <TextView android:id="@+id/txv_rgbValue" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="30dp" android:padding="5dip" android:text="Nothing yet!" android:textColor="@color/black_alpha" android:textSize="18sp" android:typeface="monospace"/>
-            </LinearLayout>
-            <LinearLayout android:orientation="horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:padding="5dip">
-                <TextView android:id="@+id/txv_lightTxt" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="10dp" android:layout_marginBottom="15dp" android:padding="5dip" android:text="Lux value:" android:textColor="@color/black_alpha" android:textSize="18sp" android:typeface="monospace"/>
-                <TextView android:id="@+id/txv_lightValue" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="30dp" android:padding="5dip" android:text="Nothing yet!" android:textColor="@color/black_alpha" android:textSize="18sp" android:typeface="monospace"/>
-            </LinearLayout>
+
             <LinearLayout android:orientation="horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:padding="5dip">
 
                 <TextView
@@ -30,7 +23,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginBottom="15dp"
                     android:padding="5dip"
-                    android:text="Proximity1:"
+                    android:text="inside: "
                     android:textColor="@color/black_alpha"
                     android:textSize="18sp"
                     android:typeface="monospace" />
@@ -46,7 +39,7 @@
                 android:background="@color/activitybutton"
                 android:fontFamily="monospace"
                 android:padding="10dip"
-                android:text="Weekly Report"
+                android:text="show temprature"
                 android:textAllCaps="false"
                 android:textColor="@color/text_box_background"
                 android:textSize="25sp" />

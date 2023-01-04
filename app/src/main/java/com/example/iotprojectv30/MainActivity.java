@@ -22,8 +22,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 public class MainActivity extends AppCompatActivity {
-    //private TextView txv_rgb;
-    //private TextView txv_light;
+
     private TextView txv_proximity;
     private Button btn_color;
     private MqttAndroidClient client;
@@ -40,8 +39,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //txv_rgb = findViewById(R.id.txv_rgbValue);
-        //txv_light = findViewById(R.id.txv_lightValue);
         txv_proximity = findViewById(R.id.txv_proximityValue);
         btn_color = findViewById(R.id.btnColor);
 
@@ -54,7 +51,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
         connect();
-
         client.setCallback(new MqttCallbackExtended() {
             @Override
             public void connectComplete(boolean reconnect, String serverURI) {
@@ -65,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
                     System.out.println("Reconnected to : " + serverURI);
                     // Re-subscribe as we lost it due to new session
                     subscribe("otter");
-                //    subscribe("otter2");
+                //    subscribe("otter1");
 
                 } else {
                     System.out.println("Connected to: " + serverURI);
@@ -115,11 +111,6 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 }
             }
-
-
-                //collectionofNumbers.clear();
-
-
 
             @Override
             public void deliveryComplete(IMqttDeliveryToken token) {

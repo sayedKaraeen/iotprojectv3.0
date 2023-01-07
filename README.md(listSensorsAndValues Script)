@@ -1,0 +1,59 @@
+# iotprojectv3.0
+#HERE IS A DETAILED EXPLANATION OF listSensorsAndValues.py SCRIPT.
+# -*- coding: utf-8 -*-
+#!/usr/bin/env python
+   
+# This is where to insert your generated API keys (http://api.telldus.com/keys)
+pubkey = "FEHUVEW84RAFR5SP22RABURUPHAFRUNU" # Public Key
+privkey = "ZUXEVEGA9USTAZEWRETHAQUBUR69U6EF" # Private Key
+token = "8aba8385b6f65e0f7bf274e5e673f04b05d541a1e" # Token
+secret = "ecd6a7203c64ec98469df1da577eeff3" # Token Secret 
+
+import requests, json, hashlib, uuid, time
+localtime = time.localtime(time.time())
+timestamp = str(time.mktime(localtime))
+nonce = uuid.uuid4().hex
+oauthSignature = (privkey + "%26" + secret)
+ 
+# GET-request
+response = requests.get(
+	url="https://pa-api.telldus.com/json/sensors/list",
+	params={
+		"includeValues": "1",
+	},
+	headers={
+		"Authorization": 'OAuth oauth_consumer_key="{pubkey}", oauth_nonce="{nonce}", oauth_signature="{oauthSignature}", oauth_signature_method="PLAINTEXT", oauth_timestamp="{timestamp}", oauth_token="{token}", oauth_version="1.0"'.format(pubkey=pubkey, nonce=nonce, oauthSignature=oauthSignature, timestamp=timestamp, token=token),
+		},
+	)
+# Output/response from GET-request	
+responseData = response.json()
+print(json.dumps(responseData, indent=4, sort_keys=True))
+
+EXPLANATION:
+“Listsensorsandvalues” RESPONSIBLE FOR TEMPERATURE AND HUMIDITY DATA TRANSFER.
+
+Before everything script imports several libraries that are needed for it to function.
+    - 'request' : this library is used to make HTTP requests to web servers. In this is script, it is used to make a GET request to the Telles API.
+    - 'json' : this library provides functions for working with JSON data. And this is scrapped it is used to pause the JSON response from the API and print it to the Console as a formatted string.
+    - 'hashlib' : this library provides cryptographic hash functions, including the SHA-1 algorithm used in OAuth, 1.0.
+    - 'uuid' : This library provides functions for generating universally unique identifiers (UUIDs). And this is script, it is used to generate a nonce for tthe OAuth 1.0request.
+    -  'time' : This library provides functions for workiung with time, including functions for getting the current time and converting it to a timestamp.
+    
+    After the libraries are imported, the script sets several variables:
+    - 'localtime' : This variabel is set to the current local time using the 'time.localtime()' function.
+    - 'timestamp' : This variabel is set to the current time as a Unix timestamp (the number of seconds since january 1, 1970) using the 'time.mktime()' function and 'localtime'.
+    - 'nonce' : this variabel is set to a new random (UUID) using the 'uuid.uuid4()' function.
+    - 'oauthSignature' : this variabel is set to the combination of the private key and token secret,  seperated by an ampersand. this is used as the signature. for. the Oauth 1.0. request.
+    
+    Next, the script makes a GET request to the '/sensor/list' endpoint of the Telldus API using the 'request.get' function.  it passes. the following parameters:
+    - 'url' : This is the. URL of the API endpoint being requested.
+    - 'params' : This is a disctionary of query parameters to be added to the URL. In this case, the 'includeValues' parameter is set to '1', which tells the. Api to include the current values of the sensors in the response.
+    - 'headers' : This is a disctionary of HTTP headers to be included in the request. In this case, the 'Authorisation' header is set with the OAuth 1.0 information. This includes the consumer key (public key), nounce, signature, signature method (PLAINTEXT), timestamp, token and version. These values are included in the header using string formatting.
+    
+    After the request is made, the script retrieves the response from the API using the 'response.json()' function and stores it in a variabel called 'responseData'. it then prints the response to the console using the 'json.dump()' function, which formats the response as a JSON string and prints it with indentation and sorted keys.
+    
+    
+    
+Important to mention this Script exist in Raspberry Pi.
+
+

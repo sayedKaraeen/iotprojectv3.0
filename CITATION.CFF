@@ -1,9 +1,1 @@
-@software{My_IOT_Software_2023,
-  author = {Sayed Karaeen, Kamyar Bajan and Josephine Thorne},
-  doi = {10.5281/zenodo.1234},
-  month = {1},
-  title = {{My IOT Software}},
-  url = {https://github.com/github/linguist},
-  version = {2.0.4},
-  year = {2023}
-}
+
